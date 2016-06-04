@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		19F429621D037084002E16F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429611D037084002E16F9 /* AppDelegate.swift */; };
-		19F429641D037085002E16F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429631D037084002E16F9 /* ViewController.swift */; };
 		19F429671D037085002E16F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19F429651D037085002E16F9 /* Main.storyboard */; };
 		19F429691D037085002E16F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19F429681D037085002E16F9 /* Assets.xcassets */; };
 		19F4296C1D037085002E16F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19F4296A1D037085002E16F9 /* LaunchScreen.storyboard */; };
 		19F429771D037085002E16F9 /* OnTheMapJuliaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429761D037085002E16F9 /* OnTheMapJuliaTests.swift */; };
 		19F429821D037085002E16F9 /* OnTheMapJuliaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429811D037085002E16F9 /* OnTheMapJuliaUITests.swift */; };
+		19F429901D039321002E16F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F4298F1D039321002E16F9 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		19F429921D039382002E16F9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429911D039382002E16F9 /* MapViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		19F429941D0393AB002E16F9 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429931D0393AB002E16F9 /* ListViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		19F4299A1D039BB7002E16F9 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429991D039BB7002E16F9 /* TabBarViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,6 @@
 /* Begin PBXFileReference section */
 		19F4295E1D037084002E16F9 /* OnTheMapJulia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMapJulia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19F429611D037084002E16F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		19F429631D037084002E16F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		19F429661D037085002E16F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		19F429681D037085002E16F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19F4296B1D037085002E16F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +49,10 @@
 		19F4297D1D037085002E16F9 /* OnTheMapJuliaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapJuliaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19F429811D037085002E16F9 /* OnTheMapJuliaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapJuliaUITests.swift; sourceTree = "<group>"; };
 		19F429831D037085002E16F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19F4298F1D039321002E16F9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		19F429911D039382002E16F9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		19F429931D0393AB002E16F9 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		19F429991D039BB7002E16F9 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,9 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				19F429601D037084002E16F9 /* OnTheMapJulia */,
-				19F429751D037085002E16F9 /* OnTheMapJuliaTests */,
-				19F429801D037085002E16F9 /* OnTheMapJuliaUITests */,
-				19F4295F1D037084002E16F9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,17 +95,16 @@
 				19F4297D1D037085002E16F9 /* OnTheMapJuliaUITests.xctest */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		19F429601D037084002E16F9 /* OnTheMapJulia */ = {
 			isa = PBXGroup;
 			children = (
-				19F429611D037084002E16F9 /* AppDelegate.swift */,
-				19F429631D037084002E16F9 /* ViewController.swift */,
-				19F429651D037085002E16F9 /* Main.storyboard */,
-				19F429681D037085002E16F9 /* Assets.xcassets */,
-				19F4296A1D037085002E16F9 /* LaunchScreen.storyboard */,
-				19F4296D1D037085002E16F9 /* Info.plist */,
+				19F429971D039496002E16F9 /* CONTROLLER */,
+				19F429951D039472002E16F9 /* MODEL */,
+				19F429961D039484002E16F9 /* VIEW */,
+				19F429981D0394BE002E16F9 /* OTHER */,
 			);
 			path = OnTheMapJulia;
 			sourceTree = "<group>";
@@ -114,7 +116,7 @@
 				19F429781D037085002E16F9 /* Info.plist */,
 			);
 			path = OnTheMapJuliaTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		19F429801D037085002E16F9 /* OnTheMapJuliaUITests */ = {
 			isa = PBXGroup;
@@ -123,6 +125,46 @@
 				19F429831D037085002E16F9 /* Info.plist */,
 			);
 			path = OnTheMapJuliaUITests;
+			sourceTree = SOURCE_ROOT;
+		};
+		19F429951D039472002E16F9 /* MODEL */ = {
+			isa = PBXGroup;
+			children = (
+				19F429611D037084002E16F9 /* AppDelegate.swift */,
+			);
+			name = MODEL;
+			sourceTree = "<group>";
+		};
+		19F429961D039484002E16F9 /* VIEW */ = {
+			isa = PBXGroup;
+			children = (
+				19F429651D037085002E16F9 /* Main.storyboard */,
+				19F429681D037085002E16F9 /* Assets.xcassets */,
+				19F4296A1D037085002E16F9 /* LaunchScreen.storyboard */,
+			);
+			name = VIEW;
+			sourceTree = "<group>";
+		};
+		19F429971D039496002E16F9 /* CONTROLLER */ = {
+			isa = PBXGroup;
+			children = (
+				19F4298F1D039321002E16F9 /* LoginViewController.swift */,
+				19F429911D039382002E16F9 /* MapViewController.swift */,
+				19F429991D039BB7002E16F9 /* TabBarViewController.swift */,
+				19F429931D0393AB002E16F9 /* ListViewController.swift */,
+			);
+			name = CONTROLLER;
+			sourceTree = "<group>";
+		};
+		19F429981D0394BE002E16F9 /* OTHER */ = {
+			isa = PBXGroup;
+			children = (
+				19F4296D1D037085002E16F9 /* Info.plist */,
+				19F429751D037085002E16F9 /* OnTheMapJuliaTests */,
+				19F429801D037085002E16F9 /* OnTheMapJuliaUITests */,
+				19F4295F1D037084002E16F9 /* Products */,
+			);
+			name = OTHER;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,7 +297,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19F429641D037085002E16F9 /* ViewController.swift in Sources */,
+				19F429901D039321002E16F9 /* LoginViewController.swift in Sources */,
+				19F429921D039382002E16F9 /* MapViewController.swift in Sources */,
+				19F429941D0393AB002E16F9 /* ListViewController.swift in Sources */,
+				19F4299A1D039BB7002E16F9 /* TabBarViewController.swift in Sources */,
 				19F429621D037084002E16F9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +526,7 @@
 				19F429881D037085002E16F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19F429891D037085002E16F9 /* Build configuration list for PBXNativeTarget "OnTheMapJuliaTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +535,7 @@
 				19F4298B1D037085002E16F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19F4298C1D037085002E16F9 /* Build configuration list for PBXNativeTarget "OnTheMapJuliaUITests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +544,7 @@
 				19F4298E1D037085002E16F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
