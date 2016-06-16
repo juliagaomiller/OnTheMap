@@ -13,6 +13,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordTF: UITextField!
     
     @IBOutlet var incorrect: UILabel!
+
+    // add variables here to hold instance data.
     
     override func viewDidLoad() {
         incorrect.hidden = true
