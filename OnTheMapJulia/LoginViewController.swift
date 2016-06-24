@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginEmail(){
         
         UdacityClient.sharedInstance.login(self.usernameTF.text!, pw: self.passwordTF.text!)
+        self.performSegueWithIdentifier("MapViewSegue", sender: nil)
         
     }
     

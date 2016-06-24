@@ -29,7 +29,7 @@ class UdacityClient {
             }
             else {
                 loginJSONData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-                //print(NSString(data: loginJSONData, encoding: NSUTF8StringEncoding))
+                print(NSString(data: loginJSONData, encoding: NSUTF8StringEncoding))
                 //EXPECTED DATA:
                 // Optional({"account": {"registered": true, "key": "2987668569"}, "session": {"id": "1481973610S0b90d77a3c1df94ff1becba7903c7192", "expiration": "2016-02-16T11:20:10.019830Z"}})
             }
@@ -57,5 +57,23 @@ class UdacityClient {
         }
         
         task.resume()
+    }
+    
+    func getStudentLocations(){
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        
+        let session = NSURLSession.sharedSession()
+        print("about to send request")
+        session.dataTaskWithRequest(request)
+            {data, response, error in
+                if error != nil { print("There was an error with getStudentLocations request")}
+                else {
+                    let studentLocations = try! NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary
+                    print("just parsed student locations")
+                    print(studentLocations)}
+            }
     }
 }
