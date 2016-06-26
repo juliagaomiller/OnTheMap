@@ -5,10 +5,12 @@
 
 
 import Foundation
+import UIKit
 
 class UdacityClient {
     
     static let sharedInstance = UdacityClient()
+    var appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     
     func login(user: String!, pw: String!){
         
@@ -66,14 +68,18 @@ class UdacityClient {
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         
         let session = NSURLSession.sharedSession()
-        print("about to send request")
-        session.dataTaskWithRequest(request)
+        let task = session.dataTaskWithRequest(request)
             {data, response, error in
                 if error != nil { print("There was an error with getStudentLocations request")}
                 else {
-                    let studentLocations = try! NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary
-                    print("just parsed student locations")
-                    print(studentLocations)}
+                    let JSONdata = try! NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary
+                    //print(studentLocationsJSON)
+                    appDelegate.studentLocations = JSONdata["results"] as? NSArray
+                    }
+                    
+                }
             }
+        task.resume()
+        
     }
 }
