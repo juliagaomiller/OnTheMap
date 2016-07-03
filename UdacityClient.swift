@@ -72,8 +72,14 @@ class UdacityClient {
             {data, response, error in
                 if error != nil { print("There was an error with getStudentLocations request")}
                 else {
-                    let JSONdata = try! NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [[String: AnyObject]]
-                    print(studentLocationsJSON)
+                    let JSONdata = try! NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                    //print(JSONdata)
+                    //print(JSONdata["results"])
+                    self.appDelegate.studentLocations = (JSONdata["results"] as? [[String:AnyObject]])!
+                    
+                    //print(self.appDelegate.studentLocations)
+
+                    
                     }
             }
         task.resume()
