@@ -14,6 +14,7 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var map: MKMapView!
     
+    
     let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     
     
@@ -23,16 +24,26 @@ class MapViewController: UIViewController {
         //print(appDelegate.studentLocations)
         //would print []
         
-        //ADDED THIS DELAY BECAUSE THE SHOWPINSONMAP FUNCTION KEPT ON GETTING CALLED BEFORE THE SERVER RETURNED THE JSON DATA, I KNOW THERE IS A BETTER WAY TO DO THIS, BUT THIS TECHNIQUE WORKS FOR NOW. 
+        //ADDED THIS DELAY BECAUSE THE SHOWPINSONMAP FUNCTION KEPT ON GETTING CALLED BEFORE THE SERVER RETURNED THE JSON DATA, I KNOW THERE IS A BETTER WAY TO DO THIS, BUT THIS TECHNIQUE WORKS FOR NOW.
         NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(5), target: self, selector: "showPinsOnMap", userInfo: nil, repeats: false)
         
     }
     
+    @IBAction func reloadMapPage(sender: AnyObject) {
+    }
+    
+    @IBAction func postPersLoc(sender: AnyObject) {
+    }
+    @IBAction func logout(sender: AnyObject) {
+    }
+    
+    
+    
     func showPinsOnMap(){
         //print("running showPinsOnMap")
         //map.removeAnnotations(map.annotations)
-        print("about to print appDelegate student locations")
-        print(appDelegate.studentLocations)
+        //print("about to print appDelegate student locations")
+        //print(appDelegate.studentLocations)
         let studentLocations = appDelegate.studentLocations
         print(studentLocations)
         var annotations = [MKPointAnnotation]()

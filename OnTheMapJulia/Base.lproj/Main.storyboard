@@ -51,7 +51,7 @@
                                     <rect key="frame" x="152" y="306" width="97" height="30"/>
                                 </variation>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6CD00A86-09D6-477C-A383-1ACFD0472C9B" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-q4-YTH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5BF637D1-FA93-411A-A182-0AA5CACDF3ED" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-q4-YTH">
                                 <rect key="frame" x="212" y="129" width="177" height="94"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="177" id="JVw-83-Z41"/>
@@ -140,7 +140,7 @@
                         <outlet property="incorrect" destination="R3E-BK-2Rh" id="gQg-t7-BBk"/>
                         <outlet property="passwordTF" destination="SIX-Ud-E8c" id="Mkx-2s-e0I"/>
                         <outlet property="usernameTF" destination="MQt-o8-2Da" id="7GQ-Z2-5H6"/>
-                        <segue destination="2ax-12-1CB" kind="show" identifier="MapViewSegue" id="Xef-FR-EK1"/>
+                        <segue destination="8kG-5X-WCH" kind="show" identifier="MapViewSegue" id="xKT-vc-k9o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -159,7 +159,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="moI-Ke-gEb">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="moI-Ke-gEb">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                             </mapView>
                         </subviews>
@@ -171,12 +171,24 @@
                             <constraint firstItem="moI-Ke-gEb" firstAttribute="leading" secondItem="lL0-JB-HAj" secondAttribute="leadingMargin" constant="-20" id="Qas-zu-IsH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="Mb9-dY-5Fd"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="Mb9-dY-5Fd"/>
                     <navigationItem key="navigationItem" title="On The Map" id="8b5-aC-yQT">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="IjG-3K-uMd"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="IjG-3K-uMd">
+                            <connections>
+                                <action selector="logout:" destination="2ax-12-1CB" id="ovc-9s-aUV"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="91h-WO-0Q1"/>
-                            <barButtonItem systemItem="compose" id="T1D-Sa-rSv"/>
+                            <barButtonItem systemItem="refresh" id="91h-WO-0Q1">
+                                <connections>
+                                    <action selector="reloadMapPage:" destination="2ax-12-1CB" id="N9H-cS-Zae"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="compose" id="T1D-Sa-rSv">
+                                <connections>
+                                    <action selector="postPersLoc:" destination="2ax-12-1CB" id="LlU-Gx-LEE"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -210,7 +222,7 @@
                             <outlet property="delegate" destination="51n-C2-p18" id="dfy-Sa-mi8"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="List" id="Hoy-Or-0DY"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="Hoy-Or-0DY"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="On The Map" id="6BC-fD-GZC">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="0B1-Gg-1tm"/>
@@ -241,12 +253,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQT-ll-yLC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344" y="-69"/>
+            <point key="canvasLocation" x="1316" y="-337"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="SuJ-M0-e3S">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cIE-8H-VSF" customClass="TabBarViewController" customModule="OnTheMapJulia" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="cIE-8H-VSF" customClass="TabBarViewController" customModule="OnTheMapJulia" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="o4F-WP-D1l"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5yV-cT-bv4">
@@ -264,7 +276,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="6CD00A86-09D6-477C-A383-1ACFD0472C9B" width="206" height="268">
+        <image name="5BF637D1-FA93-411A-A182-0AA5CACDF3ED" width="206" height="268">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -4018,7 +4030,4 @@ AAAAAAAAAD8AAAAAAAAAAAAAAAAAA21sA
 </mutableData>
         </image>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Xef-FR-EK1"/>
-    </inferredMetricsTieBreakers>
 </document>
