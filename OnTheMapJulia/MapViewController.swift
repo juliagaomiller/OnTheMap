@@ -19,7 +19,13 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         UdacityClient.sharedInstance.getStudentLocations()
-        self.showPinsOnMap()
+        //print("printing appDelegate.studentLocations in MapViewController")
+        //print(appDelegate.studentLocations)
+        //would print []
+        
+        //ADDED THIS DELAY BECAUSE THE SHOWPINSONMAP FUNCTION KEPT ON GETTING CALLED BEFORE THE SERVER RETURNED THE JSON DATA, I KNOW THERE IS A BETTER WAY TO DO THIS, BUT THIS TECHNIQUE WORKS FOR NOW. 
+        NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(5), target: self, selector: "showPinsOnMap", userInfo: nil, repeats: false)
+        
     }
     
     func showPinsOnMap(){

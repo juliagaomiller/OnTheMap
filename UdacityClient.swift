@@ -77,7 +77,8 @@ class UdacityClient {
                     //print(JSONdata["results"])
                     self.appDelegate.studentLocations = (JSONdata["results"] as? [[String:AnyObject]])!
                     
-                    //print(self.appDelegate.studentLocations)
+                    print("printing appDelegate.studentLocations in UdacityClient")
+                    print(self.appDelegate.studentLocations)
 
                     
                     }

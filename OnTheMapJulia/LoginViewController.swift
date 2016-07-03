@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     
     @IBOutlet var incorrect: UILabel!
     
+    let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+    
     override func viewDidLoad() {
         incorrect.hidden = true
     }
