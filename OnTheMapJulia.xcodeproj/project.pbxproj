@@ -16,8 +16,7 @@
 		19F429821D037085002E16F9 /* OnTheMapJuliaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429811D037085002E16F9 /* OnTheMapJuliaUITests.swift */; };
 		19F429901D039321002E16F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F4298F1D039321002E16F9 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		19F429921D039382002E16F9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429911D039382002E16F9 /* MapViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		19F429941D0393AB002E16F9 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429931D0393AB002E16F9 /* ListViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		19F4299A1D039BB7002E16F9 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429991D039BB7002E16F9 /* TabBarViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		19F429941D0393AB002E16F9 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F429931D0393AB002E16F9 /* TableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +52,7 @@
 		19F429831D037085002E16F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19F4298F1D039321002E16F9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		19F429911D039382002E16F9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		19F429931D0393AB002E16F9 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		19F429991D039BB7002E16F9 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		19F429931D0393AB002E16F9 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,8 +151,7 @@
 			children = (
 				19F4298F1D039321002E16F9 /* LoginViewController.swift */,
 				19F429911D039382002E16F9 /* MapViewController.swift */,
-				19F429991D039BB7002E16F9 /* TabBarViewController.swift */,
-				19F429931D0393AB002E16F9 /* ListViewController.swift */,
+				19F429931D0393AB002E16F9 /* TableViewController.swift */,
 			);
 			name = CONTROLLER;
 			sourceTree = "<group>";
@@ -303,8 +300,7 @@
 				19F429901D039321002E16F9 /* LoginViewController.swift in Sources */,
 				19F429921D039382002E16F9 /* MapViewController.swift in Sources */,
 				19B539CB1D1AF4F300EDB71F /* UdacityClient.swift in Sources */,
-				19F429941D0393AB002E16F9 /* ListViewController.swift in Sources */,
-				19F4299A1D039BB7002E16F9 /* TabBarViewController.swift in Sources */,
+				19F429941D0393AB002E16F9 /* TableViewController.swift in Sources */,
 				19F429621D037084002E16F9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
