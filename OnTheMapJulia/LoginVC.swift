@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginVC: UIViewController {
     
     @IBOutlet var usernameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!

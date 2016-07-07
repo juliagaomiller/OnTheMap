@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableVC: UITableViewController {
     
     let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     var studentLocations = [[String:AnyObject]]()
