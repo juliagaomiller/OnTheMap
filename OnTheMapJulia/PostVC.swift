@@ -4,9 +4,16 @@ import MapKit
 
 class PostVC: UIViewController {
     
+    let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+    
     var searchRequest:MKLocalSearchRequest!
     var search:MKLocalSearch!
     var annotation:MKPointAnnotation!
+    
+    var address = ""
+    var lat = ""
+    var long = ""
+    var url = ""
 
     @IBOutlet weak var blueView:UIView!
     @IBOutlet weak var userLocation:UITextField!
@@ -38,8 +45,8 @@ class PostVC: UIViewController {
                     return
                 }
                 else {
-                    print("(PostVC41)Latitude: ", searchResponse!.boundingRegion.center.latitude)
-                    print("(PostVC42)Longitude: ", searchResponse!.boundingRegion.center.longitude)
+                    //print("(PostVC41)Latitude: ", searchResponse!.boundingRegion.center.latitude)
+                    //print("(PostVC42)Longitude: ", searchResponse!.boundingRegion.center.longitude)
                     self.annotation = MKPointAnnotation()
                     let location = CLLocationCoordinate2D(
                         latitude: searchResponse!.boundingRegion.center.latitude,
@@ -51,6 +58,10 @@ class PostVC: UIViewController {
                     self.map.setRegion(region, animated: true)
                     self.map.reloadInputViews()
                     
+                    self.address = self.userLocation.text!
+                    self.lat = String(location.latitude)
+                    self.long = String(location.longitude)
+                    
                     self.mapShowing(true)
 
                 }
@@ -58,8 +69,14 @@ class PostVC: UIViewController {
         }
     }
     
+    @IBAction func submitLocation(sender: AnyObject) {
+        //Need to get first and last name. In order to do this, need to submit another request; look at getPublicUserData in RequestManager, need to create another function in UdacityClient. I'm going to call this function right after the user logins.
+        UdacityClient.sharedInstance.postMyLocation(address, url: link.text!, lat: lat, long: long)
+    }
+    
+    
     @IBAction func cancel(sender: AnyObject){
-        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func mapShowing(bool: Bool){
@@ -73,9 +90,9 @@ class PostVC: UIViewController {
             
         }
         else {
+            userLocation.hidden = false
             findButton.hidden = false
             questionLabel.hidden = false
-            userLocation.hidden = false
             map.hidden = true
             link.hidden = true
             submitButton.hidden = true

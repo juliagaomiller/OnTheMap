@@ -21,7 +21,7 @@ class TableVC: UITableViewController {
         let first = singleStudent["firstName"] as! String
         let last = singleStudent["lastName"] as! String
         
-        print("24-tableviewcontroller: \(first) \(last)")
+        //print("TableVC24: \(first) \(last)")
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         cell.textLabel?.text = "\(first) \(last)"
