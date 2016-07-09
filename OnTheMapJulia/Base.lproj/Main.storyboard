@@ -51,7 +51,7 @@
                                     <rect key="frame" x="152" y="306" width="97" height="30"/>
                                 </variation>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C5A492A7-D8FC-4A4E-9CEC-17FD2C69B83D" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-q4-YTH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="E5358FBF-2130-46AD-B493-A99D8D51CF18" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-q4-YTH">
                                 <rect key="frame" x="212" y="129" width="177" height="94"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="177" id="JVw-83-Z41"/>
@@ -219,21 +219,20 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="O5H-j3-Yoi">
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="O5H-j3-Yoi">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="395"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="395" id="fo5-fe-0jz"/>
-                                            <constraint firstAttribute="width" constant="600" id="zYH-r7-Avl"/>
-                                        </constraints>
                                     </mapView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.28511848290000003" green="0.56243061319999998" blue="0.86669428660000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="O5H-j3-Yoi" firstAttribute="top" secondItem="gbX-VE-f5p" secondAttribute="top" id="88k-c2-LiP"/>
+                                    <constraint firstItem="O5H-j3-Yoi" firstAttribute="leading" secondItem="gbX-VE-f5p" secondAttribute="leading" id="Okv-NW-tU6"/>
                                     <constraint firstItem="Cmb-oB-BIn" firstAttribute="top" secondItem="gbX-VE-f5p" secondAttribute="top" constant="19" id="Ucq-Xa-Szx"/>
+                                    <constraint firstAttribute="trailing" secondItem="O5H-j3-Yoi" secondAttribute="trailing" id="UjQ-hh-Yoj"/>
                                     <constraint firstItem="Cmb-oB-BIn" firstAttribute="centerX" secondItem="gbX-VE-f5p" secondAttribute="centerX" id="Uqq-TG-PV7"/>
+                                    <constraint firstAttribute="bottom" secondItem="O5H-j3-Yoi" secondAttribute="bottom" id="Wrx-WV-QgM"/>
                                     <constraint firstItem="Cmb-oB-BIn" firstAttribute="leading" secondItem="gbX-VE-f5p" secondAttribute="leading" constant="8" id="g0Y-5m-u4u"/>
                                     <constraint firstAttribute="trailing" secondItem="Cmb-oB-BIn" secondAttribute="trailing" constant="8" id="nQ8-qp-C9V"/>
-                                    <constraint firstItem="O5H-j3-Yoi" firstAttribute="centerX" secondItem="gbX-VE-f5p" secondAttribute="centerX" id="uYh-9q-yd3"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p34-Hp-LF8">
@@ -251,19 +250,36 @@
                                 <color key="textColor" red="0.1450980392" green="0.28235294119999998" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDq-lb-Vni">
+                                <rect key="frame" x="276" y="545" width="49" height="30"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.1450980392" green="0.28235294119999998" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Link to Share Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TWE-5I-WE5">
+                                <rect key="frame" x="20" y="76" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="O5H-j3-Yoi" firstAttribute="centerX" secondItem="5Cl-qk-u33" secondAttribute="centerX" id="6HI-kJ-vCN"/>
                             <constraint firstItem="gM1-vb-dqu" firstAttribute="centerX" secondItem="5Cl-qk-u33" secondAttribute="centerX" id="6lY-Xb-3X1"/>
                             <constraint firstItem="p34-Hp-LF8" firstAttribute="centerX" secondItem="5Cl-qk-u33" secondAttribute="centerX" id="6u6-Sd-eTN"/>
                             <constraint firstItem="gbX-VE-f5p" firstAttribute="centerX" secondItem="5Cl-qk-u33" secondAttribute="centerX" id="CWo-nn-Kbd"/>
                             <constraint firstItem="gM1-vb-dqu" firstAttribute="top" secondItem="t4H-t2-O32" secondAttribute="bottom" constant="21" id="FDj-Om-tHi"/>
+                            <constraint firstItem="TWE-5I-WE5" firstAttribute="top" secondItem="t4H-t2-O32" secondAttribute="bottom" constant="12" id="MQf-sS-4zt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TWE-5I-WE5" secondAttribute="trailing" id="N1d-Oi-zDe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gbX-VE-f5p" secondAttribute="trailing" constant="-20" id="PBB-i4-HuX"/>
-                            <constraint firstItem="O5H-j3-Yoi" firstAttribute="centerX" secondItem="5Cl-qk-u33" secondAttribute="centerX" id="U9t-6l-Irw"/>
                             <constraint firstItem="pLl-wP-Adl" firstAttribute="top" secondItem="p34-Hp-LF8" secondAttribute="bottom" constant="25" id="UP3-2M-k4S"/>
+                            <constraint firstItem="pLl-wP-Adl" firstAttribute="top" secondItem="MDq-lb-Vni" secondAttribute="bottom" constant="25" id="YiT-hC-ana"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="TWE-5I-WE5" secondAttribute="leading" id="aPC-6H-RfZ"/>
                             <constraint firstItem="gbX-VE-f5p" firstAttribute="leading" secondItem="5Cl-qk-u33" secondAttribute="leadingMargin" constant="-20" id="d4Q-6G-57F"/>
                             <constraint firstItem="p34-Hp-LF8" firstAttribute="top" secondItem="gbX-VE-f5p" secondAttribute="bottom" constant="20" id="j4z-RM-q9e"/>
+                            <constraint firstItem="TWE-5I-WE5" firstAttribute="centerX" secondItem="5Cl-qk-u33" secondAttribute="centerX" id="kGQ-Nt-oTy"/>
                             <constraint firstItem="gbX-VE-f5p" firstAttribute="top" secondItem="gM1-vb-dqu" secondAttribute="bottom" constant="24" id="ruv-xv-kVJ"/>
+                            <constraint firstItem="MDq-lb-Vni" firstAttribute="centerX" secondItem="5Cl-qk-u33" secondAttribute="centerX" id="woN-rC-udd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hBu-Fq-Fx8">
@@ -275,7 +291,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="blueView" destination="gbX-VE-f5p" id="gCK-tm-Kap"/>
+                        <outlet property="findButton" destination="p34-Hp-LF8" id="H8g-0T-HUJ"/>
+                        <outlet property="link" destination="TWE-5I-WE5" id="df8-C0-lTf"/>
                         <outlet property="map" destination="O5H-j3-Yoi" id="5df-PN-8lv"/>
+                        <outlet property="questionLabel" destination="gM1-vb-dqu" id="wjU-zn-u85"/>
+                        <outlet property="submitButton" destination="MDq-lb-Vni" id="BsJ-q2-Y40"/>
                         <outlet property="userLocation" destination="Cmb-oB-BIn" id="oVS-BT-ipP"/>
                         <outlet property="view" destination="gbX-VE-f5p" id="IVD-nh-9IE"/>
                     </connections>
@@ -407,7 +427,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="C5A492A7-D8FC-4A4E-9CEC-17FD2C69B83D" width="206" height="268">
+        <image name="E5358FBF-2130-46AD-B493-A99D8D51CF18" width="206" height="268">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

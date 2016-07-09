@@ -11,6 +11,10 @@ class PostVC: UIViewController {
     @IBOutlet weak var blueView:UIView!
     @IBOutlet weak var userLocation:UITextField!
     @IBOutlet weak var map:MKMapView!
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var findButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var link: UITextField!
     
     override func viewDidLoad() {
         self.mapShowing(false)
@@ -34,36 +38,50 @@ class PostVC: UIViewController {
                     return
                 }
                 else {
-                    print("Latitude: ", searchResponse!.boundingRegion.center.latitude)
-                    print("Longitude: ", searchResponse!.boundingRegion.center.longitude)
+                    print("(PostVC41)Latitude: ", searchResponse!.boundingRegion.center.latitude)
+                    print("(PostVC42)Longitude: ", searchResponse!.boundingRegion.center.longitude)
                     self.annotation = MKPointAnnotation()
-                    self.annotation.coordinate = CLLocationCoordinate2D(
+                    let location = CLLocationCoordinate2D(
                         latitude: searchResponse!.boundingRegion.center.latitude,
                         longitude: searchResponse!.boundingRegion.center.longitude)
+                    self.annotation.coordinate = location
                     self.map.addAnnotation(self.annotation)
+                    let span = MKCoordinateSpanMake(0.02, 0.02)
+                    let region = MKCoordinateRegion(center: location, span: span)
+                    self.map.setRegion(region, animated: true)
                     self.map.reloadInputViews()
                     
                     self.mapShowing(true)
-                    print("mapHidden:", self.map.hidden)
+
                 }
             }
-        }
-    }
-    
-    func mapShowing(bool: Bool){
-        if bool == true {
-            map.hidden = false
-            blueView.hidden = true
-            userLocation.hidden = true
-        }
-        else {
-            map.hidden = true
-            blueView.hidden = false
-            userLocation.hidden = false
         }
     }
     
     @IBAction func cancel(sender: AnyObject){
         
     }
+    
+    func mapShowing(bool: Bool){
+        if bool == true {
+            userLocation.hidden = true
+            findButton.hidden = true
+            questionLabel.hidden = true
+            map.hidden = false
+            link.hidden = false
+            submitButton.hidden = false
+            
+        }
+        else {
+            findButton.hidden = false
+            questionLabel.hidden = false
+            userLocation.hidden = false
+            map.hidden = true
+            link.hidden = true
+            submitButton.hidden = true
+            
+        }
+    }
+    
+
 }
