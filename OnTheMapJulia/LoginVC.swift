@@ -27,10 +27,9 @@ class LoginVC: UIViewController {
                 UdacityClient.sharedInstance.getFirstLastName({ (success) -> Void in
                     if(success){
                         performUpdatesOnMain({ () -> Void in
-                            print("First name: ", self.appDelegate.firstName)
-                            print("Last name: ", self.appDelegate.lastName)
+                            //print("First name: ", self.appDelegate.firstName)
+                            //print("Last name: ", self.appDelegate.lastName)
                             self.performSegueWithIdentifier("MapViewSegue", sender: nil)
-                            print("Just called the MapViewSegue")
                         })
                     }
                 })

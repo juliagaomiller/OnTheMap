@@ -27,6 +27,7 @@ class MapVC: UIViewController {
     }
     
     @IBAction func postPersLoc(sender: AnyObject) {
+        print("About to perform PostVCSegueM")
         self.performSegueWithIdentifier("PostVCSegueM", sender: self)
     }
     @IBAction func logout(sender: AnyObject) {
