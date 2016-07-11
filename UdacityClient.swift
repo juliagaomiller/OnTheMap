@@ -114,13 +114,24 @@ class UdacityClient {
         
         print("UdacityClient: postMyLocation() url: ", url)
         
-//        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
-//        request.HTTPMethod = "POST"
-//        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-//        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.HTTPBody = url.dataUsingEncoding(NSUTF8StringEncoding)
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
+        request.HTTPMethod = "POST"
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPBody = url.dataUsingEncoding(NSUTF8StringEncoding)
         
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request){
+            data, response, error in
+            if error != nil {
+                print("UdacityClient129: Error posting user location: ", error)
+            }
+            else {
+                print("UdacityClient131: Post user location has been successful")
+            }
+        }
+        task.resume()
 
     }
 }
