@@ -51,7 +51,7 @@
                                     <rect key="frame" x="152" y="306" width="97" height="30"/>
                                 </variation>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="97BA9634-F00A-48D5-87CB-AF94FC7D3094" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-q4-YTH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD724B5E-02D7-4C4C-BF17-23B3CF08989F" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-q4-YTH">
                                 <rect key="frame" x="212" y="129" width="177" height="94"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="177" id="JVw-83-Z41"/>
@@ -186,13 +186,13 @@
                             <barButtonItem systemItem="compose" id="T1D-Sa-rSv">
                                 <connections>
                                     <action selector="postPersLoc:" destination="2ax-12-1CB" id="LlU-Gx-LEE"/>
+                                    <segue destination="htD-pv-8ZJ" kind="show" identifier="PostVCSegueM" id="fwv-KS-7dG"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="map" destination="moI-Ke-gEb" id="4yo-Cn-sgS"/>
-                        <segue destination="htD-pv-8ZJ" kind="presentation" identifier="PostVCSegueM" id="rXE-cP-a5R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YDT-V4-GZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -306,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfZ-dm-zoS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4898" y="607"/>
+            <point key="canvasLocation" x="4800" y="817"/>
         </scene>
         <!--On The Map-->
         <scene sceneID="ttI-bQ-mhX">
@@ -349,9 +349,6 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="htD-pv-8ZJ" kind="presentation" identifier="PostVCSegueT" id="vBL-bq-qx9"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="34N-0K-l6v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -430,11 +427,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fr-fx-zQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4158" y="614"/>
+            <point key="canvasLocation" x="3984" y="787"/>
         </scene>
     </scenes>
     <resources>
-        <image name="97BA9634-F00A-48D5-87CB-AF94FC7D3094" width="206" height="268">
+        <image name="AD724B5E-02D7-4C4C-BF17-23B3CF08989F" width="206" height="268">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -4188,7 +4185,4 @@ AAAAAAAAAD8AAAAAAAAAAAAAAAAAA21sA
 </mutableData>
         </image>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="rXE-cP-a5R"/>
-    </inferredMetricsTieBreakers>
 </document>
