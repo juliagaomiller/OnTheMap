@@ -51,7 +51,7 @@
                                     <rect key="frame" x="152" y="306" width="97" height="30"/>
                                 </variation>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD724B5E-02D7-4C4C-BF17-23B3CF08989F" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-q4-YTH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="47AB55E1-E133-495B-8205-3AEC9E9C67B9" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-q4-YTH">
                                 <rect key="frame" x="212" y="129" width="177" height="94"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="177" id="JVw-83-Z41"/>
@@ -236,7 +236,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Cmb-oB-BIn" secondAttribute="trailing" constant="8" id="nQ8-qp-C9V"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p34-Hp-LF8">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p34-Hp-LF8">
                                 <rect key="frame" x="245" y="545" width="111" height="30"/>
                                 <state key="normal" title="Find on the Map">
                                     <color key="titleColor" red="0.1450980392" green="0.28235294119999998" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -251,7 +251,7 @@
                                 <color key="textColor" red="0.1450980392" green="0.28235294119999998" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDq-lb-Vni">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDq-lb-Vni">
                                 <rect key="frame" x="276" y="545" width="49" height="30"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="0.1450980392" green="0.28235294119999998" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -342,10 +342,23 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="On The Map" id="6BC-fD-GZC">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="0B1-Gg-1tm"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="0B1-Gg-1tm">
+                            <connections>
+                                <action selector="logout:" destination="51n-C2-p18" id="uU8-g2-OZu"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="iiO-Tn-U1C"/>
-                            <barButtonItem systemItem="compose" id="iq8-pr-ulc"/>
+                            <barButtonItem systemItem="refresh" id="iiO-Tn-U1C">
+                                <connections>
+                                    <action selector="refresh:" destination="51n-C2-p18" id="dhX-K9-1q4"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="compose" id="iq8-pr-ulc">
+                                <connections>
+                                    <action selector="postPersLoc:" destination="51n-C2-p18" id="Aiv-QX-hnU"/>
+                                    <segue destination="htD-pv-8ZJ" kind="show" identifier="PostVCSegueT" id="Jwu-2l-QBQ"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -431,7 +444,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AD724B5E-02D7-4C4C-BF17-23B3CF08989F" width="206" height="268">
+        <image name="47AB55E1-E133-495B-8205-3AEC9E9C67B9" width="206" height="268">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -4185,4 +4198,7 @@ AAAAAAAAAD8AAAAAAAAAAAAAAAAAA21sA
 </mutableData>
         </image>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Jwu-2l-QBQ"/>
+    </inferredMetricsTieBreakers>
 </document>

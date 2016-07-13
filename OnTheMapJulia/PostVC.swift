@@ -71,8 +71,8 @@ class PostVC: UIViewController {
     }
     
     @IBAction func submitLocation(sender: AnyObject) {
-        //Need to get first and last name. In order to do this, need to submit another request; look at getPublicUserData in RequestManager, need to create another function in UdacityClient. I'm going to call this function right after the user logins.
         UdacityClient.sharedInstance.postMyLocation(address, url: link.text!, lat: lat, long: long)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     

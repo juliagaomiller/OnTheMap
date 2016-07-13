@@ -27,7 +27,6 @@ class MapVC: UIViewController {
     }
     
     @IBAction func postPersLoc(sender: AnyObject) {
-        print("About to perform PostVCSegueM")
         self.performSegueWithIdentifier("PostVCSegueM", sender: self)
     }
     @IBAction func logout(sender: AnyObject) {
@@ -70,9 +69,14 @@ class MapVC: UIViewController {
     }
     
     func loadMapPage(){
+    //TRYING TO MAKE THE REFRESH WORK NOW THAT I HAVE ADDED IN THE COMPLETION HANDLERS
         map.removeAnnotations(map.annotations)
-        UdacityClient.sharedInstance.getStudentLocations()
-        NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(5), target: self, selector: "showPinsOnMap", userInfo: nil, repeats: false)
+        UdacityClient.sharedInstance.getStudentLocations({(success) -> Void in
+            if (success){
+                self.showPinsOnMap()
+            }
+        })
     }
-    
 }
+
+

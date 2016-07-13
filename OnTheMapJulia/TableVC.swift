@@ -11,6 +11,22 @@ class TableVC: UITableViewController {
         
     }
     
+    @IBAction func refresh(sender: AnyObject) {
+        UdacityClient.sharedInstance.getStudentLocations{ (success) -> Void in
+            if(success){
+                self.studentLocations = self.appDelegate.studentLocations
+                self.tableView.reloadData()
+            }
+        }
+        
+    }
+    @IBAction func postPersLoc(sender: AnyObject) {
+        performSegueWithIdentifier("PostVCSegueT", sender: self)
+    }
+    
+    @IBAction func logout(sender: AnyObject) {
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return studentLocations.count
     }

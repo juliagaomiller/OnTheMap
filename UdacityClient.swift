@@ -73,7 +73,6 @@ class UdacityClient {
             else {
                 let userData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
                 let json = try! (NSJSONSerialization.JSONObjectWithData(userData, options: .AllowFragments))
-                //print("GetFirstLastName() in UdacityClient JSON: \(json)")
                 guard let user = json["user"],
                 let first = user!["first_name"] as? String,
                 let last = user!["last_name"] as? String
@@ -88,7 +87,7 @@ class UdacityClient {
         task.resume()
     }
     
-    func getStudentLocations(){
+    func getStudentLocations(completionHandler: (success: Bool) -> Void){
         
         let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
@@ -97,10 +96,13 @@ class UdacityClient {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request)
             {data, response, error in
-                if error != nil { print("There was an error with getStudentLocations request")}
+                if error != nil { print("There was an error with getStudentLocations request")
+                completionHandler(success: false)
+                }
                 else {
                     let JSONdata = try! NSJSONSerialization.JSONObjectWithData(data!, options: [])
                     self.appDelegate.studentLocations = (JSONdata["results"] as? [[String:AnyObject]])!
+                    completionHandler(success: true)
                     }
             }
         task.resume()
