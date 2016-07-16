@@ -25,6 +25,8 @@ class TableVC: UITableViewController {
     }
     
     @IBAction func logout(sender: AnyObject) {
+        UdacityClient.sharedInstance.logout()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

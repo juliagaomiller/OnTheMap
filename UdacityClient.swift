@@ -136,4 +136,20 @@ class UdacityClient {
         task.resume()
 
     }
+    
+    func logout(){
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+        request.HTTPMethod = "DELETE"
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request){
+            data, response, error in
+            if error != nil {
+                print("UdacityClient147: Error logging out")
+            }
+            else {
+                print("UdacityClient150: Logout succeeded")
+            }
+        }
+        task.resume()
+    }
 }

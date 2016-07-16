@@ -19,7 +19,7 @@ class MapVC: UIViewController {
     
     
     override func viewDidLoad() {
-        loadMapPage()
+        self.showPinsOnMap()
     }
     
     @IBAction func reload(sender: AnyObject) {
@@ -30,7 +30,8 @@ class MapVC: UIViewController {
         self.performSegueWithIdentifier("PostVCSegueM", sender: self)
     }
     @IBAction func logout(sender: AnyObject) {
-        
+        UdacityClient.sharedInstance.logout()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
