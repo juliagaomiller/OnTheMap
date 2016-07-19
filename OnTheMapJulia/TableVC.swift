@@ -38,12 +38,20 @@ class TableVC: UITableViewController {
         
         let first = singleStudent["firstName"] as! String
         let last = singleStudent["lastName"] as! String
-        
-        //print("TableVC24: \(first) \(last)")
+        let url = singleStudent["mediaURL"] as! String
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         cell.textLabel?.text = "\(first) \(last)"
+        cell.detailTextLabel!.text = "\(url)"
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //print("calling DidSelectRowAtIndexPath")
+        let singleStudent = studentLocations[indexPath.row]
+        let url = singleStudent["mediaURL"] as! String
+        UIApplication.sharedApplication().openURL(NSURL(string:"\(url)")!)
+
     }
 }

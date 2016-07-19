@@ -59,7 +59,7 @@ class MapVC: UIViewController {
             //print(name)
             annotation.title = name
             
-            if let url = value["mediaUrl"] as! String?{
+            if let url = value["mediaURL"] as! String?{
                 annotation.subtitle = url
             }
             
