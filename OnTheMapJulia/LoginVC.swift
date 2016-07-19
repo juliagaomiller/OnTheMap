@@ -31,7 +31,13 @@ class LoginVC: UIViewController {
         self.activityInd.hidden = false
         self.activityInd.startAnimating()
         UdacityClient.sharedInstance.login(self.usernameTF.text!, pw: self.passwordTF.text!, completionHandler: {(success, error) in
-            if (success){
+            print(success)
+            if (!success) {
+                let alert = UIAlertController(title: "Error", message: "Invalid username or password", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil);
+                
+            } else {
                 UdacityClient.sharedInstance.getFirstLastName({ (success) -> Void in
                     if(success){
                         performUpdatesOnMain({ () -> Void in

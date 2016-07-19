@@ -48,9 +48,9 @@ class TableVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //print("calling DidSelectRowAtIndexPath")
         let singleStudent = studentLocations[indexPath.row]
         let url = singleStudent["mediaURL"] as! String
+        //print(url)
         UIApplication.sharedApplication().openURL(NSURL(string:"\(url)")!)
 
     }
