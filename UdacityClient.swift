@@ -23,6 +23,7 @@ class UdacityClient {
             if error != nil {
                 print("There was an error.")
                 completionHandler(success: false, error: error)
+                return
             }
             else {
                 loginJSONData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
@@ -35,7 +36,7 @@ class UdacityClient {
             
             guard let account = parsedJSONData["account"] as? [String: AnyObject] else {
                 print("LoginVC39-no account")
-                //completionHandler(success: false, error: nil)
+                completionHandler(success: false, error: nil)
                 return
             }
             guard let account_key = account["key"] as? String else {

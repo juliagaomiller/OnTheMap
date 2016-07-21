@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var usernameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
@@ -20,10 +20,14 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         incorrect.hidden = true
         activityInd.hidden = true
-        usernameTF.text = ""
+        usernameTF.delegate = self
+        passwordTF.delegate = self
         usernameTF.placeholder = "Username"
-        passwordTF.text = ""
         passwordTF.placeholder = "Password"
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = ""
     }
     
     @IBAction func loginEmail(){
@@ -34,9 +38,11 @@ class LoginVC: UIViewController {
             print(success)
             if (!success) {
                 let alert = UIAlertController(title: "Error", message: "Invalid username or password", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil);
-                
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+                performUpdatesOnMain({ () -> Void in
+                    self.presentViewController(alert, animated: true, completion: nil);
+                    self.activityInd.hidden = true
+                })
             } else {
                 UdacityClient.sharedInstance.getFirstLastName({ (success) -> Void in
                     if(success){

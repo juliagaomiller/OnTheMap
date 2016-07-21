@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 
-class MapVC: UIViewController {
+class MapVC: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
     
@@ -20,6 +20,7 @@ class MapVC: UIViewController {
     
     override func viewDidLoad() {
         self.showPinsOnMap()
+        map.delegate = self
     }
     
     @IBAction func reload(sender: AnyObject) {
@@ -33,8 +34,6 @@ class MapVC: UIViewController {
         UdacityClient.sharedInstance.logout()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
     
     func showPinsOnMap(){
         
@@ -56,7 +55,6 @@ class MapVC: UIViewController {
             if let lastName = value["lastName"] as! String?{
                 name += "\(lastName)"
             }
-            //print(name)
             annotation.title = name
             
             if let url = value["mediaURL"] as! String?{
@@ -64,9 +62,22 @@ class MapVC: UIViewController {
             }
             
             annotations.append(annotation)
+
         }
         map.addAnnotations(annotations)
         map.reloadInputViews()
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        annotationView.canShowCallout = true
+        annotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+        return annotationView
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let url = view.annotation!.subtitle!!   //apparently, you need to unwrap the subtitle twice haha.
+        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
     
     func loadMapPage(){

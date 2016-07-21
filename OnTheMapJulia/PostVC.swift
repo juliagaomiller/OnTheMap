@@ -25,7 +25,6 @@ class PostVC: UIViewController {
     
     override func viewDidLoad() {
         self.mapShowing(false)
-        print("loaded ViewDidLoad in PostVC")
     }
     
     @IBAction func findAddress(sender: AnyObject) {
