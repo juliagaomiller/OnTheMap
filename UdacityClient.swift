@@ -32,7 +32,7 @@ class UdacityClient {
             let parsedJSONData = try! (NSJSONSerialization.JSONObjectWithData(loginJSONData, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary)!
             
             guard let account = parsedJSONData["account"] as? [String: AnyObject] else {
-                print("LoginVC39-no account")
+                print("UdacityClient35-no account")
                 completionHandler(success: false, error: nil)
                 return
             }

@@ -35,10 +35,15 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.activityInd.hidden = false
         self.activityInd.startAnimating()
         UdacityClient.sharedInstance.login(self.usernameTF.text!, pw: self.passwordTF.text!, completionHandler: {(success, error) in
-            print(success)
             if (!success) {
-                let alert = UIAlertController(title: "Error", message: "Invalid username or password", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+                var alert: UIAlertController!
+                if error != nil {
+                    alert = UIAlertController(title: "Error", message: "Issue with network connectivity", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+                } else {
+                    alert = UIAlertController(title: "Error", message: "Invalid username or password", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+                }
                 performUpdatesOnMain({ () -> Void in
                     self.presentViewController(alert, animated: true, completion: nil);
                     self.activityInd.hidden = true
