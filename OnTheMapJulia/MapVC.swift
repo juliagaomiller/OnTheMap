@@ -76,12 +76,11 @@ class MapVC: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let url = view.annotation!.subtitle!!   //apparently, you need to unwrap the subtitle twice haha.
+        let url = view.annotation!.subtitle!!
         UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
     
     func loadMapPage(){
-    //TRYING TO MAKE THE REFRESH WORK NOW THAT I HAVE ADDED IN THE COMPLETION HANDLERS
         map.removeAnnotations(map.annotations)
         UdacityClient.sharedInstance.getStudentLocations({(success) -> Void in
             if (success){

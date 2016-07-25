@@ -30,7 +30,7 @@ class PostVC: UIViewController {
     @IBAction func findAddress(sender: AnyObject) {
         
         if userLocation.text == "" {
-            //no location entered
+            print("No location entered.")
         }
         else {
             searchRequest = MKLocalSearchRequest()
@@ -45,8 +45,6 @@ class PostVC: UIViewController {
                     return
                 }
                 else {
-                    //print("(PostVC41)Latitude: ", searchResponse!.boundingRegion.center.latitude)
-                    //print("(PostVC42)Longitude: ", searchResponse!.boundingRegion.center.longitude)
                     self.annotation = MKPointAnnotation()
                     let location = CLLocationCoordinate2D(
                         latitude: searchResponse!.boundingRegion.center.latitude,

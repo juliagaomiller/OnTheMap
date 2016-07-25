@@ -27,9 +27,6 @@ class UdacityClient {
             }
             else {
                 loginJSONData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-                //print(NSString(data: loginJSONData, encoding: NSUTF8StringEncoding))
-                //EXPECTED DATA:
-                // Optional({"account": {"registered": true, "key": "2987668569"}, "session": {"id": "1481973610S0b90d77a3c1df94ff1becba7903c7192", "expiration": "2016-02-16T11:20:10.019830Z"}})
             }
             
             let parsedJSONData = try! (NSJSONSerialization.JSONObjectWithData(loginJSONData, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary)!
@@ -43,16 +40,8 @@ class UdacityClient {
                 print("couldn't find account key")
                 return
             }
-//            guard let session = parsedJSONData["session"] as? [String: AnyObject] else {
-//                print("couldn't find session array")
-//                return
-//            }
-//            guard let session_id = session["id"] as? String else {
-//                print ("couldn't find session ID")
-//                return
-//            }
             
-            self.appDelegate.accountKey = account_key   //will need this later to post personal location
+            self.appDelegate.accountKey = account_key
             
             completionHandler(success: true, error: nil)
         }
