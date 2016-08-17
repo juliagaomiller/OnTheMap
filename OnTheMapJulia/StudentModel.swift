@@ -6,3 +6,16 @@
 
 
 import Foundation
+
+struct student {
+    
+    static let sharedInstance = student()
+    
+    var createdAt: String?
+    var first: String?
+    var last: String?
+    var lat: Double?
+    var long: Double?
+    var url: String?
+
+}
