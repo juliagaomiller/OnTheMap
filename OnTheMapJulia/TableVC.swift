@@ -4,17 +4,18 @@ import UIKit
 class TableVC: UITableViewController {
     
     let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-    var studentLocations = [[String:AnyObject]]()
+    var studentModelArray = [StudentModel]()
     
     override func viewDidLoad() {
-        studentLocations = appDelegate.studentLocations
+        studentModelArray = appDelegate.studentModelArray
         
     }
     
     @IBAction func refresh(sender: AnyObject) {
         UdacityClient.sharedInstance.getStudentLocations{ (success) -> Void in
             if(success){
-                self.studentLocations = self.appDelegate.studentLocations
+                self.studentModelArray = self.appDelegate.studentModelArray
+                //self.studentLocations = self.appDelegate.studentLocations
                 self.tableView.reloadData()
             }
         }
@@ -30,27 +31,25 @@ class TableVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentLocations.count
+        return studentModelArray.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let singleStudent = studentLocations[indexPath.row]
+        let student = studentModelArray[indexPath.row]
         
-        let first = singleStudent["firstName"] as! String
-        let last = singleStudent["lastName"] as! String
-        let url = singleStudent["mediaURL"] as! String
+        let name = student.name
+        let url = student.url
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel?.text = "\(first) \(last)"
-        cell.detailTextLabel!.text = "\(url)"
+        cell.textLabel?.text = name
+        cell.detailTextLabel!.text = url
         
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let singleStudent = studentLocations[indexPath.row]
-        let url = singleStudent["mediaURL"] as! String
-        UIApplication.sharedApplication().openURL(NSURL(string:"\(url)")!)
+        let student = studentModelArray[indexPath.row]
+        UIApplication.sharedApplication().openURL(NSURL(string: student.url)!)
 
     }
 }

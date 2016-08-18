@@ -91,11 +91,57 @@ class UdacityClient {
                 }
                 else {
                     let JSONdata = try! NSJSONSerialization.JSONObjectWithData(data!, options: [])
-                    self.appDelegate.studentLocations = (JSONdata["results"] as? [[String:AnyObject]])!
+                    let results = JSONdata["results"] as! [[String:AnyObject]]
+                    self.saveLocationsToStudentModelArray(results)
+                    
                     completionHandler(success: true)
                     }
             }
         task.resume()
+        
+    }
+    
+    func saveLocationsToStudentModelArray(results: [[String:AnyObject]]){
+        var studentModelArrayWithDuplicates = [StudentModel]()
+        var studentModelArrayWithoutDuplicates = [StudentModel]()
+        for value in results {
+            var student = StudentModel()
+            guard let updatedAt = value["updatedAt"] as? String,
+            let long = value["longitude"] as? Double,
+            let lat = value["latitude"] as? Double,
+            let last = value["lastName"] as? String,
+            let first = value["firstName"] as? String,
+            let url = value["mediaURL"] as? String
+                else {
+                    print("This student value did not meet all the necessary requirements to be saved: ", value)
+                    return
+            }
+            
+            let fullName = "\(first) \(last)"
+            
+            student.createdAt = updatedAt
+            student.long = long
+            student.lat = lat
+            student.name = fullName
+            student.url = url
+            
+            studentModelArrayWithDuplicates.append(student)
+            
+            for value in studentModelArrayWithDuplicates {
+                if student.name == value.name {
+                    print("Found a duplicate!: ", student.name, ", ", value.name)
+                    student.duplicate = true
+                }
+                if !(student.duplicate){
+                    print("Adding: ", student.name)
+                    studentModelArrayWithoutDuplicates.append(student)
+                }
+            }
+            
+
+        }
+        self.appDelegate.studentModelArray = studentModelArrayWithoutDuplicates
+        
     }
     
     func postMyLocation(map: String, url: String, lat: String, long: String){
