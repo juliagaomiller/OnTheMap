@@ -132,10 +132,10 @@ class UdacityClient {
                     print("Found a duplicate!: ", student.name, ", ", value.name)
                     student.duplicate = true
                 }
-                if !(student.duplicate){
-                    print("Adding: ", student.name)
-                    studentModelArrayWithoutDuplicates.append(student)
-                }
+            }
+            if !(student.duplicate){
+                print("Adding: ", student.name)
+                studentModelArrayWithoutDuplicates.append(student)
             }
             
 
