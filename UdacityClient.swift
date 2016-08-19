@@ -124,46 +124,57 @@ class UdacityClient {
             student.name = fullName
             student.url = url
             
-            studentModelArray.append(student)
+            if student.name != " " {
+                var thisIsDuplicate = false
+                for value in studentModelArray{
+                    if student.name == value.name{
+                        thisIsDuplicate = true
+                    }
+                }
+                if !(thisIsDuplicate){
+                   studentModelArray.append(student)
+                }
+                
+            }
         }
-        studentModelArray = removeDuplicates(studentModelArray)
+//        studentModelArray = removeDuplicates(studentModelArray)
         self.appDelegate.studentModelArray = studentModelArray
         
     }
     
     //okay, kind of didn't work; succeeded in removing SOME duplicates
-    func removeDuplicates(studentModelArray: [StudentModel]) -> [StudentModel] {
-        var array = studentModelArray
-        var i1 = 0
-        var i2 = 1
-        for _ in array {
-            print("array count: ", array.count)
-            if i1 >= array.count-2 {
-                break
-            }
-            let student1 = array[i1]
-            for _ in array {
-                print("array count: ", array.count)
-                if i2 >= array.count-1 {
-                    break
-                }
-                let student2 = array[i2]
-                if student1.name == student2.name {
-                    print("Found a duplicate ", student1.name, " at index ", i2)
-                  array.removeAtIndex(i2)
-                    i2++
-                } else {
-                    break
-                }
-                print("i2: ", i2)
-            }
-            i1++
-            print("i1: ", i1)
-            i2 = i1+1
-        }
-        print(array)
-        return array
-    }
+//    func removeDuplicates(studentModelArray: [StudentModel]) -> [StudentModel] {
+//        var array = studentModelArray
+//        var i1 = 0
+//        var i2 = 1
+//        for _ in array {
+//            print("array count: ", array.count)
+//            if i1 >= array.count-2 {
+//                break
+//            }
+//            let student1 = array[i1]
+//            for _ in array {
+//                print("array count: ", array.count)
+//                if i2 >= array.count-1 {
+//                    break
+//                }
+//                let student2 = array[i2]
+//                if student1.name == student2.name {
+//                    print("Found a duplicate ", student1.name, " at index ", i2)
+//                  array.removeAtIndex(i2)
+//                    i2++
+//                } else {
+//                    break
+//                }
+//                print("i2: ", i2)
+//            }
+//            i1++
+//            print("i1: ", i1)
+//            i2 = i1+1
+//        }
+//        print(array)
+//        return array
+//    }
     
     func postMyLocation(map: String, url: String, lat: String, long: String){
         
