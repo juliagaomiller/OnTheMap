@@ -14,8 +14,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
     
-    
-    let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+    var sharedInstance = StudentModel.sharedInstance
     
     
     override func viewDidLoad() {
@@ -30,7 +29,6 @@ class MapVC: UIViewController, MKMapViewDelegate {
     @IBAction func postPersLoc(sender: AnyObject) {
         let postVC = storyboard?.instantiateViewControllerWithIdentifier("PostVC") as! PostVC
         navigationController?.presentViewController(postVC, animated: true, completion: nil)
-        //self.performSegueWithIdentifier("PostVCSegueM", sender: self)
     }
     @IBAction func logout(sender: AnyObject) {
         UdacityClient.sharedInstance.logout()
@@ -39,11 +37,11 @@ class MapVC: UIViewController, MKMapViewDelegate {
     
     func showPinsOnMap(){
         
-        let studentModelArray = appDelegate.studentModelArray
+        let tempArray = sharedInstance.studentArray
         
         var annotations = [MKPointAnnotation]()
         
-        for student in studentModelArray {
+        for student in tempArray {
             let annotation = MKPointAnnotation()
             let coord = CLLocationCoordinate2DMake(student.lat, student.long)
             annotation.coordinate = coord

@@ -3,18 +3,21 @@ import UIKit
 
 class TableVC: UITableViewController {
     
-    let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-    var studentModelArray = [StudentModel]()
+
+    var tempArray = StudentModel.sharedInstance.studentArray
+    
+    var sharedInstance = StudentModel.sharedInstance
+    
     
     override func viewDidLoad() {
-        studentModelArray = appDelegate.studentModelArray
+        tempArray = sharedInstance.studentArray
         
     }
     
     @IBAction func refresh(sender: AnyObject) {
         UdacityClient.sharedInstance.getStudentLocations{ (success) -> Void in
             if(success){
-                self.studentModelArray = self.appDelegate.studentModelArray
+                self.tempArray = self.sharedInstance.studentArray
                 //self.studentLocations = self.appDelegate.studentLocations
                 self.tableView.reloadData()
             }
@@ -33,11 +36,11 @@ class TableVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentModelArray.count
+        return tempArray.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let student = studentModelArray[indexPath.row]
+        let student = tempArray[indexPath.row]
         
         let name = student.name
         let url = student.url
@@ -50,7 +53,7 @@ class TableVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let student = studentModelArray[indexPath.row]
+        let student = tempArray[indexPath.row]
         UIApplication.sharedApplication().openURL(NSURL(string: student.url)!)
 
     }

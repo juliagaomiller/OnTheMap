@@ -4,6 +4,9 @@ import UIKit
 class UdacityClient {
     
     static let sharedInstance = UdacityClient()
+    
+    let sharedInstance = StudentModel.sharedInstance
+    
     let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     
     func login(user: String!, pw: String!, completionHandler: (success: Bool, error: NSError?) -> Void){
@@ -102,9 +105,10 @@ class UdacityClient {
     }
     
     func saveLocationsToStudentModelArray(results: [[String:AnyObject]]){
-        var studentModelArray = [StudentModel]()
+        let studentInfo = sharedInstance.studentInfo
+        var tempArray = [studentInfo]
         for value in results {
-            var student = StudentModel()
+            
             guard let updatedAt = value["updatedAt"] as? String,
             let long = value["longitude"] as? Double,
             let lat = value["latitude"] as? Double,
@@ -118,27 +122,24 @@ class UdacityClient {
             
             let fullName = "\(first) \(last)"
             
-            student.createdAt = updatedAt
-            student.long = long
-            student.lat = lat
-            student.name = fullName
-            student.url = url
+            //let student = ...
             
             if student.name != " " {
                 var thisIsDuplicate = false
-                for value in studentModelArray{
+                for value in tempArray{
                     if student.name == value.name{
                         thisIsDuplicate = true
                     }
                 }
                 if !(thisIsDuplicate){
-                   studentModelArray.append(student)
+                   tempArray.append(student)
                 }
                 
             }
         }
         
-        self.appDelegate.studentModelArray = studentModelArray
+        self.studentModelArray = tempArray
+        print(self.studentModelArray)
         
     }
     

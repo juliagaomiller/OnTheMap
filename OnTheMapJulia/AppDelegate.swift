@@ -12,8 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var studentModelArray: [StudentModel]!
-    //var studentLocations = [[String:AnyObject]]()
     var accountKey = ""
     var firstName = ""
     var lastName = ""

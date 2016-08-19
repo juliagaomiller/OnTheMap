@@ -4,8 +4,6 @@ import MapKit
 
 class PostVC: UIViewController, UITextFieldDelegate {
     
-    let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-    
     var searchRequest:MKLocalSearchRequest!
     var search:MKLocalSearch!
     var annotation:MKPointAnnotation!
@@ -76,17 +74,16 @@ class PostVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func submitLocation(sender: AnyObject) {
-        //UdacityClient.sharedInstance.postMyLocation(address, url: link.text!, lat: lat, long: long)
-        UdacityClient.sharedInstance.postMyLocation(address, url: link.text!, lat: lat, long: long) {
-           if (error != nil) {
-                var alert = UIAlertController(title: nil, message: error, preferredStyle: .Alert)
+        UdacityClient.sharedInstance.postMyLocation(address, url: link.text!, lat: lat, long: long) { (error) -> Void in
+            if (error != nil) {
+                let alert = UIAlertController(title: nil, message: error, preferredStyle: .Alert)
                 self.presentViewController(alert, animated: true, completion: nil)
                 let delay = 1.0 * Double(NSEC_PER_SEC)
                 let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
                 dispatch_after(time, dispatch_get_main_queue(), {
                     alert.dismissViewControllerAnimated(true, completion: nil)
                 })
-            }
+        }
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
