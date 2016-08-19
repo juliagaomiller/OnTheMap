@@ -28,7 +28,9 @@ class MapVC: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func postPersLoc(sender: AnyObject) {
-        self.performSegueWithIdentifier("PostVCSegueM", sender: self)
+        let postVC = storyboard?.instantiateViewControllerWithIdentifier("PostVC") as! PostVC
+        navigationController?.presentViewController(postVC, animated: true, completion: nil)
+        //self.performSegueWithIdentifier("PostVCSegueM", sender: self)
     }
     @IBAction func logout(sender: AnyObject) {
         UdacityClient.sharedInstance.logout()

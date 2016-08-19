@@ -22,7 +22,9 @@ class TableVC: UITableViewController {
         
     }
     @IBAction func postPersLoc(sender: AnyObject) {
-        performSegueWithIdentifier("PostVCSegueT", sender: self)
+        let postVC = storyboard?.instantiateViewControllerWithIdentifier("PostVC") as! PostVC
+        navigationController?.presentViewController(postVC, animated: true, completion: nil)
+        //performSegueWithIdentifier("PostVCSegueT", sender: self)
     }
     
     @IBAction func logout(sender: AnyObject) {

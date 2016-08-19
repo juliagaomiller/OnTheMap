@@ -137,6 +137,7 @@ class UdacityClient {
                 
             }
         }
+        
 //        studentModelArray = removeDuplicates(studentModelArray)
         self.appDelegate.studentModelArray = studentModelArray
         
