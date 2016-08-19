@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import MapKit
 
-class PostVC: UIViewController {
+class PostVC: UIViewController, UITextFieldDelegate {
     
     let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     
@@ -22,9 +22,12 @@ class PostVC: UIViewController {
     @IBOutlet weak var findButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var link: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         self.mapShowing(false)
+        link.delegate = self
+        activityIndicator.hidden = true
     }
     
     @IBAction func findAddress(sender: AnyObject) {
@@ -33,6 +36,9 @@ class PostVC: UIViewController {
             print("No location entered.")
         }
         else {
+            activityIndicator.hidden = false
+            activityIndicator.startAnimating()
+            
             searchRequest = MKLocalSearchRequest()
             searchRequest.naturalLanguageQuery = userLocation.text
             search = MKLocalSearch(request: searchRequest)
@@ -45,6 +51,8 @@ class PostVC: UIViewController {
                     return
                 }
                 else {
+                    self.activityIndicator.stopAnimating()
+                    
                     self.annotation = MKPointAnnotation()
                     let location = CLLocationCoordinate2D(
                         latitude: searchResponse!.boundingRegion.center.latitude,
@@ -68,17 +76,33 @@ class PostVC: UIViewController {
     }
     
     @IBAction func submitLocation(sender: AnyObject) {
-        UdacityClient.sharedInstance.postMyLocation(address, url: link.text!, lat: lat, long: long)
+        //UdacityClient.sharedInstance.postMyLocation(address, url: link.text!, lat: lat, long: long)
+        UdacityClient.sharedInstance.postMyLocation(address, url: link.text!, lat: lat, long: long) {
+           if (error != nil) {
+                var alert = UIAlertController(title: nil, message: error, preferredStyle: .Alert)
+                self.presentViewController(alert, animated: true, completion: nil)
+                let delay = 1.0 * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue(), {
+                    alert.dismissViewControllerAnimated(true, completion: nil)
+                })
+            }
+        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     
     @IBAction func cancel(sender: AnyObject){
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     func mapShowing(bool: Bool){
-        if bool == true {
+        if (bool) {
             userLocation.hidden = true
             findButton.hidden = true
             questionLabel.hidden = true
@@ -86,8 +110,7 @@ class PostVC: UIViewController {
             link.hidden = false
             submitButton.hidden = false
             
-        }
-        else {
+        } else {
             userLocation.hidden = false
             findButton.hidden = false
             questionLabel.hidden = false

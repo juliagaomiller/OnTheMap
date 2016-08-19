@@ -138,54 +138,22 @@ class UdacityClient {
             }
         }
         
-//        studentModelArray = removeDuplicates(studentModelArray)
         self.appDelegate.studentModelArray = studentModelArray
         
     }
     
-    //okay, kind of didn't work; succeeded in removing SOME duplicates
-//    func removeDuplicates(studentModelArray: [StudentModel]) -> [StudentModel] {
-//        var array = studentModelArray
-//        var i1 = 0
-//        var i2 = 1
-//        for _ in array {
-//            print("array count: ", array.count)
-//            if i1 >= array.count-2 {
-//                break
-//            }
-//            let student1 = array[i1]
-//            for _ in array {
-//                print("array count: ", array.count)
-//                if i2 >= array.count-1 {
-//                    break
-//                }
-//                let student2 = array[i2]
-//                if student1.name == student2.name {
-//                    print("Found a duplicate ", student1.name, " at index ", i2)
-//                  array.removeAtIndex(i2)
-//                    i2++
-//                } else {
-//                    break
-//                }
-//                print("i2: ", i2)
-//            }
-//            i1++
-//            print("i1: ", i1)
-//            i2 = i1+1
-//        }
-//        print(array)
-//        return array
-//    }
     
-    func postMyLocation(map: String, url: String, lat: String, long: String){
+    func postMyLocation(map: String, url: String, lat: String, long: String, completionHandler: (error: String?) -> Void){
         
         print("App Delegate account key: ", self.appDelegate.accountKey)
         
         let url = "{\"uniqueKey\": \"\(self.appDelegate.accountKey)\", \"firstName\": \"\(self.appDelegate.firstName)\", \"lastName\": \"\(self.appDelegate.lastName)\",\"mapString\": \"\(map)\", \"mediaURL\": \"\(url)\",\"latitude\": \(lat), \"longitude\":\(long)}"
         
-        print("UdacityClient: postMyLocation() url: ", url)
+        let BASE_URL = "https://parse.udacity.com/parse/classes/StudentLocation"
+        let params = ["limit": 100, "order": "-updatedAt"]
+        let urlString = BASE_URL + escapedParameters(params)
         
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         request.HTTPMethod = "POST"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
@@ -197,9 +165,12 @@ class UdacityClient {
             data, response, error in
             if error != nil {
                 print("UdacityClient129: Error posting user location: ", error)
+                completionHandler(error: "Error posting user location. Please try again")
+                
             }
             else {
                 print("UdacityClient131: Post user location has been successful")
+                completionHandler(error: nil)
             }
         }
         task.resume()
@@ -220,5 +191,16 @@ class UdacityClient {
             }
         }
         task.resume()
+    }
+    
+    func escapedParameters(parameters: [String: AnyObject]) -> String {
+        var urlVars = [String]()
+        
+        for (key, value) in parameters {
+            let stringValue = String(value)
+            let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            urlVars += [key + "=" + "\(escapedValue)"]
+        }
+        return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
 }
