@@ -38,7 +38,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             if (!success) {
                 var alert: UIAlertController!
                 if error != nil {
-                    alert = UIAlertController(title: "Error", message: "Issue with network connectivity", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert = UIAlertController(title: "Error", message: "Issue with network connectivity. Please check your connection.", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
                 } else {
                     alert = UIAlertController(title: "Error", message: "Invalid username or password", preferredStyle: UIAlertControllerStyle.Alert)

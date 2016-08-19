@@ -8,7 +8,5 @@ struct StudentModel {
     var lat: Double!
     var long: Double!
     var url: String!
-    
-    var duplicate = false
 
 }

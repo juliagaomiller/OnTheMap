@@ -50,34 +50,6 @@ class MapVC: UIViewController, MKMapViewDelegate {
             annotations.append(annotation)
         }
         
-        //let studentLocations = appDelegate.studentLocations
-
-        
-        
-//        for value in studentLocations {
-//            //print(value)
-//            
-//            if let latitude = value["latitude"]{
-//                let location = CLLocationCoordinate2DMake(latitude as! Double, value["longitude"] as! Double)
-//                let annotation = MKPointAnnotation()
-//                annotation.coordinate = location
-//                var name = ""
-//                
-//                if let firstName = value["firstName"] as! String?{
-//                    name = "\(firstName) "
-//                }
-//                if let lastName = value["lastName"] as! String?{
-//                    name += "\(lastName)"
-//                }
-//                annotation.title = name
-//                
-//                if let url = value["mediaURL"] as! String?{
-//                    annotation.subtitle = url
-//                }
-//                annotations.append(annotation)
-//            }
-//        }
-        //print("MapVC: number of annotations made: ", annotations.count)
         map.addAnnotations(annotations)
         map.reloadInputViews()
     }
