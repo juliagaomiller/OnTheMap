@@ -14,8 +14,11 @@ class MapVC: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
     
-    var sharedInstance = StudentModel.sharedInstance
-    
+    var collection: [StudentModel] {
+        get {
+           return StudentModel.collection
+        }
+    }
     
     override func viewDidLoad() {
         self.showPinsOnMap()
@@ -37,15 +40,13 @@ class MapVC: UIViewController, MKMapViewDelegate {
     
     func showPinsOnMap(){
         
-        let tempArray = sharedInstance.studentArray
-        
         var annotations = [MKPointAnnotation]()
         
-        for student in tempArray {
+        for student in collection {
             let annotation = MKPointAnnotation()
             let coord = CLLocationCoordinate2DMake(student.lat, student.long)
             annotation.coordinate = coord
-            annotation.title = student.name
+            annotation.title = student.first + " " + student.last
             annotation.subtitle = student.url
             annotations.append(annotation)
         }

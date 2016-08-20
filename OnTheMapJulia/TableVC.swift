@@ -3,22 +3,16 @@ import UIKit
 
 class TableVC: UITableViewController {
     
-
-    var tempArray = StudentModel.sharedInstance.studentArray
-    
-    var sharedInstance = StudentModel.sharedInstance
-    
+    var collection: [StudentModel] {
+        return StudentModel.collection
+    }
     
     override func viewDidLoad() {
-        tempArray = sharedInstance.studentArray
-        
     }
     
     @IBAction func refresh(sender: AnyObject) {
         UdacityClient.sharedInstance.getStudentLocations{ (success) -> Void in
             if(success){
-                self.tempArray = self.sharedInstance.studentArray
-                //self.studentLocations = self.appDelegate.studentLocations
                 self.tableView.reloadData()
             }
         }
@@ -27,7 +21,6 @@ class TableVC: UITableViewController {
     @IBAction func postPersLoc(sender: AnyObject) {
         let postVC = storyboard?.instantiateViewControllerWithIdentifier("PostVC") as! PostVC
         navigationController?.presentViewController(postVC, animated: true, completion: nil)
-        //performSegueWithIdentifier("PostVCSegueT", sender: self)
     }
     
     @IBAction func logout(sender: AnyObject) {
@@ -36,13 +29,13 @@ class TableVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tempArray.count
+        return StudentModel.collection.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let student = tempArray[indexPath.row]
+        let student = collection[indexPath.row]
         
-        let name = student.name
+        let name = student.first + " " + student.last
         let url = student.url
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
@@ -53,7 +46,7 @@ class TableVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let student = tempArray[indexPath.row]
+        let student = collection[indexPath.row]
         UIApplication.sharedApplication().openURL(NSURL(string: student.url)!)
 
     }

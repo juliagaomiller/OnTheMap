@@ -1,25 +1,24 @@
 
 class StudentModel {
     
-    static let sharedInstance = StudentModel()
+    static var collection = [StudentModel]()
     
-    var studentArray = [studentInformation]()
+    var createdAt: String!
     
-    var studentInfo: studentInformation!
+    var first: String!
+    var last: String!
+    var lat: Double!
+    var long: Double!
+    var url: String!
     
-    struct studentInformation {
-        var createdAt: String!
-        var name: String!
-        var lat: Double!
-        var long: Double!
-        var url: String!
-        
-        init(date: String!, name: String!, lat: Double!, long: Double!, url: String!){
-            self.createdAt = date
-            self.name = name
-            self.lat = lat
-            self.long = long
-            self.url = url
-        }
+    init(dictionary: [String: AnyObject]){
+        self.createdAt = dictionary["updatedAt"] as! String
+        self.first = dictionary["firstName"] as! String!
+        self.last = dictionary["lastName"] as! String!
+        self.lat = dictionary["latitude"] as! Double!
+        self.long = dictionary["longitude"] as! Double!
+        self.url = dictionary["mediaURL"] as! String!
     }
+    
+    
 }

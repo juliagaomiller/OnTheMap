@@ -5,8 +5,6 @@ class UdacityClient {
     
     static let sharedInstance = UdacityClient()
     
-    let sharedInstance = StudentModel.sharedInstance
-    
     let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     
     func login(user: String!, pw: String!, completionHandler: (success: Bool, error: NSError?) -> Void){
@@ -95,7 +93,10 @@ class UdacityClient {
                 else {
                     let JSONdata = try! NSJSONSerialization.JSONObjectWithData(data!, options: [])
                     let results = JSONdata["results"] as! [[String:AnyObject]]
-                    self.saveLocationsToStudentModelArray(results)
+                    for record in results {
+                        let student = StudentModel(dictionary: record)
+                        StudentModel.collection.append(student)
+                    }
                     
                     completionHandler(success: true)
                     }
@@ -104,44 +105,44 @@ class UdacityClient {
         
     }
     
-    func saveLocationsToStudentModelArray(results: [[String:AnyObject]]){
-        let studentInfo = sharedInstance.studentInfo
-        var tempArray = [studentInfo]
-        for value in results {
-            
-            guard let updatedAt = value["updatedAt"] as? String,
-            let long = value["longitude"] as? Double,
-            let lat = value["latitude"] as? Double,
-            let last = value["lastName"] as? String,
-            let first = value["firstName"] as? String,
-            let url = value["mediaURL"] as? String
-                else {
-                    print("This student value did not meet all the necessary requirements to be saved: ", value)
-                    return
-            }
-            
-            let fullName = "\(first) \(last)"
-            
-            //let student = ...
-            
-            if student.name != " " {
-                var thisIsDuplicate = false
-                for value in tempArray{
-                    if student.name == value.name{
-                        thisIsDuplicate = true
-                    }
-                }
-                if !(thisIsDuplicate){
-                   tempArray.append(student)
-                }
-                
-            }
-        }
-        
-        self.studentModelArray = tempArray
-        print(self.studentModelArray)
-        
-    }
+//    func saveLocationsToStudentModelArray(results: [[String:AnyObject]]){
+//        let studentInfo = sharedInstance.studentInfo
+//        var tempArray = [studentInfo]
+//        for value in results {
+//            
+//            guard let updatedAt = value["updatedAt"] as? String,
+//            let long = value["longitude"] as? Double,
+//            let lat = value["latitude"] as? Double,
+//            let last = value["lastName"] as? String,
+//            let first = value["firstName"] as? String,
+//            let url = value["mediaURL"] as? String
+//                else {
+//                    print("This student value did not meet all the necessary requirements to be saved: ", value)
+//                    return
+//            }
+//            
+//            let fullName = "\(first) \(last)"
+//            
+//            //let student = ...
+//            
+//            if student.name != " " {
+//                var thisIsDuplicate = false
+//                for value in tempArray{
+//                    if student.name == value.name{
+//                        thisIsDuplicate = true
+//                    }
+//                }
+//                if !(thisIsDuplicate){
+//                   tempArray.append(student)
+//                }
+//                
+//            }
+//        }
+//        
+//        self.studentModelArray = tempArray
+//        print(self.studentModelArray)
+//        
+//    }
     
     
     func postMyLocation(map: String, url: String, lat: String, long: String, completionHandler: (error: String?) -> Void){
