@@ -105,46 +105,6 @@ class UdacityClient {
         
     }
     
-//    func saveLocationsToStudentModelArray(results: [[String:AnyObject]]){
-//        let studentInfo = sharedInstance.studentInfo
-//        var tempArray = [studentInfo]
-//        for value in results {
-//            
-//            guard let updatedAt = value["updatedAt"] as? String,
-//            let long = value["longitude"] as? Double,
-//            let lat = value["latitude"] as? Double,
-//            let last = value["lastName"] as? String,
-//            let first = value["firstName"] as? String,
-//            let url = value["mediaURL"] as? String
-//                else {
-//                    print("This student value did not meet all the necessary requirements to be saved: ", value)
-//                    return
-//            }
-//            
-//            let fullName = "\(first) \(last)"
-//            
-//            //let student = ...
-//            
-//            if student.name != " " {
-//                var thisIsDuplicate = false
-//                for value in tempArray{
-//                    if student.name == value.name{
-//                        thisIsDuplicate = true
-//                    }
-//                }
-//                if !(thisIsDuplicate){
-//                   tempArray.append(student)
-//                }
-//                
-//            }
-//        }
-//        
-//        self.studentModelArray = tempArray
-//        print(self.studentModelArray)
-//        
-//    }
-    
-    
     func postMyLocation(map: String, url: String, lat: String, long: String, completionHandler: (error: String?) -> Void){
         
         print("App Delegate account key: ", self.appDelegate.accountKey)
@@ -155,7 +115,12 @@ class UdacityClient {
         let params = ["limit": 100, "order": "-updatedAt"]
         let urlString = BASE_URL + escapedParameters(params)
         
-        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+        let nsurl = NSURL(string: urlString)
+        if nsurl == nil {
+            completionHandler(error: "Error. Please check your network connection")
+            return
+        }
+        let request = NSMutableURLRequest(URL: nsurl!)
         request.HTTPMethod = "POST"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
@@ -166,6 +131,9 @@ class UdacityClient {
         let task = session.dataTaskWithRequest(request){
             data, response, error in
             if error != nil {
+                print("Code: ", error!.code)
+                print("Description: ", error?.description)
+                
                 print("UdacityClient129: Error posting user location: ", error)
                 completionHandler(error: "Error posting user location. Please try again")
                 

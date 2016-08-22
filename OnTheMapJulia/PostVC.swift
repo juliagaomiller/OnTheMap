@@ -43,6 +43,7 @@ class PostVC: UIViewController, UITextFieldDelegate {
             search.startWithCompletionHandler{ (searchResponse, error) -> Void in
                 
                 if searchResponse == nil{
+                    self.activityIndicator.hidden = true
                     let alert = UIAlertController(title: nil, message: "Place Not Found", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
@@ -77,15 +78,17 @@ class PostVC: UIViewController, UITextFieldDelegate {
         UdacityClient.sharedInstance.postMyLocation(address, url: link.text!, lat: lat, long: long) { (error) -> Void in
             if (error != nil) {
                 let alert = UIAlertController(title: nil, message: error, preferredStyle: .Alert)
+                let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alert.addAction(action)
                 self.presentViewController(alert, animated: true, completion: nil)
-                let delay = 1.0 * Double(NSEC_PER_SEC)
-                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue(), {
-                    alert.dismissViewControllerAnimated(true, completion: nil)
-                })
+//                let delay = 1.0 * Double(NSEC_PER_SEC)
+//                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+//                dispatch_after(time, dispatch_get_main_queue(), {
+//                    alert.dismissViewControllerAnimated(true, completion: nil)
+//                })
+            }
         }
-        }
-        dismissViewControllerAnimated(true, completion: nil)
+        //dismissViewControllerAnimated(true, completion: nil)
     }
     
     

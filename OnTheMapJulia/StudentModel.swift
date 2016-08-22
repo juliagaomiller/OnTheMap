@@ -1,5 +1,5 @@
 
-class StudentModel {
+struct StudentModel {
     
     static var collection = [StudentModel]()
     

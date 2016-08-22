@@ -73,6 +73,12 @@ class MapVC: UIViewController, MKMapViewDelegate {
             if (success){
                 self.showPinsOnMap()
             }
+            else {
+                let alert = UIAlertController(title: nil, message: "Server error downloading student locations", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alert.addAction(action)
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         })
     }
 }
