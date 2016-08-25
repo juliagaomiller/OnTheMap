@@ -80,7 +80,11 @@ class UdacityClient {
     
     func getStudentLocations(completionHandler: (success: Bool) -> Void){
         
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
+        let BASE_URL = "https://parse.udacity.com/parse/classes/StudentLocation"
+        let params = ["limit": 100, "order": "-updatedAt"]
+        let urlString = BASE_URL + escapedParameters(params)
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         
@@ -94,6 +98,7 @@ class UdacityClient {
                     let JSONdata = try! NSJSONSerialization.JSONObjectWithData(data!, options: [])
                     let results = JSONdata["results"] as! [[String:AnyObject]]
                     for record in results {
+                        //print(record)
                         let student = StudentModel(dictionary: record)
                         StudentModel.collection.append(student)
                     }
@@ -111,11 +116,11 @@ class UdacityClient {
         
         let url = "{\"uniqueKey\": \"\(self.appDelegate.accountKey)\", \"firstName\": \"\(self.appDelegate.firstName)\", \"lastName\": \"\(self.appDelegate.lastName)\",\"mapString\": \"\(map)\", \"mediaURL\": \"\(url)\",\"latitude\": \(lat), \"longitude\":\(long)}"
         
-        let BASE_URL = "https://parse.udacity.com/parse/classes/StudentLocation"
-        let params = ["limit": 100, "order": "-updatedAt"]
-        let urlString = BASE_URL + escapedParameters(params)
+//        let BASE_URL = "https://parse.udacity.com/parse/classes/StudentLocation"
+//        let params = ["limit": 100, "order": "-updatedAt"]
+//        let urlString = BASE_URL + escapedParameters(params)
         
-        let nsurl = NSURL(string: urlString)
+        let nsurl = NSURL(string: url)
         if nsurl == nil {
             completionHandler(error: "Error. Please check your network connection")
             return
@@ -169,7 +174,7 @@ class UdacityClient {
         for (key, value) in parameters {
             let stringValue = String(value)
             let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-            urlVars += [key + "=" + "\(escapedValue)"]
+            urlVars += [key + "=" + "\(escapedValue!)"]
         }
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
