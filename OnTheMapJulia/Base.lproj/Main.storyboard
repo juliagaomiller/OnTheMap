@@ -177,7 +177,6 @@
                             <barButtonItem systemItem="compose" id="T1D-Sa-rSv">
                                 <connections>
                                     <action selector="postPersLoc:" destination="2ax-12-1CB" id="LlU-Gx-LEE"/>
-                                    <segue destination="htD-pv-8ZJ" kind="show" identifier="PostVCSegueM" id="fwv-KS-7dG"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -315,7 +314,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfZ-dm-zoS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4800" y="817"/>
+            <point key="canvasLocation" x="4744" y="433"/>
         </scene>
         <!--On The Map-->
         <scene sceneID="ttI-bQ-mhX">
@@ -372,7 +371,6 @@
                             <barButtonItem systemItem="compose" id="iq8-pr-ulc">
                                 <connections>
                                     <action selector="postPersLoc:" destination="51n-C2-p18" id="Aiv-QX-hnU"/>
-                                    <segue destination="htD-pv-8ZJ" kind="show" identifier="PostVCSegueT" id="Jwu-2l-QBQ"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -441,28 +439,25 @@
             <point key="canvasLocation" x="2204" y="113"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="VpS-pJ-qgz">
+        <scene sceneID="BA4-TU-p2a">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="htD-pv-8ZJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PostNC" automaticallyAdjustsScrollViewInsets="NO" id="NtH-eQ-O4a" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M6q-TX-d1O">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6ga-TI-vmC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="KZv-4x-jZP" kind="relationship" relationship="rootViewController" id="JvV-J9-86p"/>
+                        <segue destination="KZv-4x-jZP" kind="relationship" relationship="rootViewController" id="HQF-Rc-Ww3"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4fr-fx-zQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qSU-WY-ImD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3984" y="787"/>
+            <point key="canvasLocation" x="3932" y="433"/>
         </scene>
     </scenes>
     <resources>
         <image name="udacitysmiley" width="206" height="268"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Jwu-2l-QBQ"/>
-    </inferredMetricsTieBreakers>
 </document>

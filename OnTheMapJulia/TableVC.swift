@@ -19,8 +19,8 @@ class TableVC: UITableViewController {
         
     }
     @IBAction func postPersLoc(sender: AnyObject) {
-        let postVC = storyboard?.instantiateViewControllerWithIdentifier("PostVC") as! PostVC
-        navigationController?.presentViewController(postVC, animated: true, completion: nil)
+        let postVC = storyboard?.instantiateViewControllerWithIdentifier("PostNC")
+        navigationController?.presentViewController(postVC!, animated: true, completion: nil)
     }
     
     @IBAction func logout(sender: AnyObject) {
